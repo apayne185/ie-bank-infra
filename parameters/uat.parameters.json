@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "environmentType": {
+            "value": "nonprod"
+        },
+        "postgreSQLServerName": {
+            "value": "apayne-dbsrv-uat"
+        },
+        "postgreSQLDatabaseName": {
+            "value": "apayne-db-uat"
+        },
+        "appServicePlanName": {
+            "value": "apayne-asp-uat"
+        },
+        "appServiceAPIAppName": {
+            "value": "apayne-be-uat"
+        },
+        "appServiceAppName": {
+            "value": "apayne-fe-uat"
+        },
+        "location": {
+            "value": "North Europe"
+        }
+    }
+  }
