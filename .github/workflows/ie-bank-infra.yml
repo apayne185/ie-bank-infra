@@ -37,14 +37,13 @@ jobs:
 
 
   deploy-dev:
-#   if: github.event_name == 'push'
+#   if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Development'
 
     steps:
-
       # Checkout code
     - uses: actions/checkout@main
 
@@ -59,8 +58,8 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
+    - name: deploy to dev 
+      uses: azure/arm-deploy@v2
       with:
         subscriptionId: ${{ env.SUBSCRIPTION_ID_DEV }}
         resourceGroupName: ${{ env.RESOURCE_GROUP_DEV }}
@@ -70,7 +69,7 @@ jobs:
 
 
   deploy-uat:
-    if: github.event_name == 'push'
+    if: github.event_pull_requests.base.ref == 'main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     needs: build
     environment: 
